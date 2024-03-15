@@ -1,6 +1,7 @@
 import asyncio
 
 from aiogram import Bot, Dispatcher
+from aiogram.client.default import DefaultBotProperties
 from aiogram.methods import DeleteWebhook
 from utils.commands import set_commands
 from config_reader import config
@@ -8,7 +9,9 @@ from handlers import get_find_tyres, user_commands
 
 
 async def main():
-    bot = Bot(token=config.bot_token.get_secret_value(), parse_mode='HTML')
+
+    default_bot_properties = DefaultBotProperties(parse_mode="HTML")
+    bot = Bot(token=config.bot_token.get_secret_value(), default=default_bot_properties)
     dp = Dispatcher()
 
     dp.include_routers(
