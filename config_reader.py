@@ -1,11 +1,8 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import SecretStr
+import os
+from dotenv import load_dotenv
 
 
-class Settings(BaseSettings):
-    bot_token: SecretStr
-
-    model_config = SettingsConfigDict(env_file='.env', env_file_encoding='utf-8')
-
-
-config = Settings()
+load_dotenv()
+bot_token = os.getenv('BOT_TOKEN')
+fortochki_login = os.getenv('FORTOCKI_LOGIN')
+fortochki_password = os.getenv('FORTOCKI_PASSWORD')

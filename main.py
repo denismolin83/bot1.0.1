@@ -4,12 +4,12 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.methods import DeleteWebhook
 from utils.commands import set_commands
-from config_reader import config
+from config_reader import bot_token
 from handlers import get_find_tyres, user_commands
 
 async def main():
     default_bot_properties = DefaultBotProperties(parse_mode="HTML")
-    bot = Bot(token=config.bot_token.get_secret_value(), default=default_bot_properties)
+    bot = Bot(token=bot_token, default=default_bot_properties)
     dp = Dispatcher()
 
     dp.include_routers(
