@@ -33,7 +33,10 @@ def get_find_tyre_fortochki(diameter: int, height: int, season: list[str], width
 
     data = helpers.serialize_object(response, dict)
 
-    print(response)
+    # print(data)
+
+    if data['price_rest_list'] is None:
+        return []
 
     tyre_price_rest = data['price_rest_list']['TyrePriceRest']
     list_of_tyre_price_rest = []

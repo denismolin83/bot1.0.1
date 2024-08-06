@@ -9,7 +9,7 @@ main_kb = ReplyKeyboardMarkup(
     keyboard=[
         [
             KeyboardButton(text="Найти шины в Форточках"),
-            KeyboardButton(text="Найти шины у нас")
+            KeyboardButton(text="Найти шины по маскам")
         ]
     ],
     resize_keyboard=True
