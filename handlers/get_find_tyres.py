@@ -1,6 +1,8 @@
 from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
+
+from schemas.find_tyre import MaskTyre
 from utils.states import FindTyresFortochki
 from keyboards.reply import exit_kb, main_kb
 from data.get_find_tyre_fortochki import get_find_tyre_fortochki
@@ -46,7 +48,10 @@ async def find_tyres(message: Message, state: FSMContext):
             f"Шип: {thorn_tyre}\n"
         )
 
-        list_of_tyres = get_find_tyre_fortochki(diameter=int(diametr_tyre), height=int(height_tyre),
-                                                season=season_tyre, width=int(width_tyre), thorn=thorn_tyre)
+        item = {'width': int(width_tyre), 'height': int(height_tyre), 'diameter': int(diametr_tyre),
+                 'season': season_tyre, 'thorn': thorn_tyre, 'wrh_list': [1015], 'brand_list': ['']}
+        mask_tyre = MaskTyre(**item)
+
+        list_of_tyres = get_find_tyre_fortochki(mask_tyre)
         list_of_tyres = "\n".join(list_of_tyres)
         await message.answer(list_of_tyres, reply_markup=exit_kb)
